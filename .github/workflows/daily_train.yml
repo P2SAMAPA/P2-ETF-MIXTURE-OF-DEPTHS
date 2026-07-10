@@ -2,7 +2,7 @@ name: Daily MoD Training
 
 on:
   schedule:
-    - cron: '10 00 * * *'
+    - cron: '40 23 * * *'
   workflow_dispatch:
 
 jobs:
