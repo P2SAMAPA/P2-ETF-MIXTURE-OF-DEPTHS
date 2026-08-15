@@ -9,12 +9,12 @@ WINDOWS = [63, 252, 504, 1008, 2016, 4032, 4536]
 UNIVERSES = {
     "FI_COMMODITIES": ["TLT", "VCIT", "LQD", "HYG", "VNQ", "GLD", "SLV"],
     "EQUITY_SECTORS": [
-        "SPY", "QQQ", "XLK", "XLF", "XLE", "XLV", "XLI", "XLY", "SMH", "SOXX", "XLB", "URA",
+        "SPY", "QQQ", "XLK", "XLF", "XLE", "XLV", "XLI", "XLY", "SMH", "SOXX", "XLB", "URA", "VUG", "VTV", "SPYG", "QUAL", "IWR", "VO", "VB", "VIG", "VEA", "VGT", "VDE", "XLC", "IBB",
         "XLP", "XLU", "GDX", "XME", "IWF", "XSD", "XBI", "IWM", "IWD", "IWO"
     ],
     "COMBINED": [
         "TLT", "VCIT", "LQD", "HYG", "VNQ", "GLD", "SLV",
-        "SPY", "QQQ", "XLK", "XLF", "XLE", "XLV", "XLI", "XLY", "SMH", "SOXX", "XLB", "URA",
+        "SPY", "QQQ", "XLK", "XLF", "XLE", "XLV", "XLI", "XLY", "SMH", "SOXX", "XLB", "URA", "VUG", "VTV", "SPYG", "QUAL", "IWR", "VO", "VB", "VIG", "VEA", "VGT", "VDE", "XLC", "IBB",
         "XLP", "XLU", "GDX", "XME", "IWF", "XSD", "XBI", "IWM", "IWD", "IWO"
     ]
 }
