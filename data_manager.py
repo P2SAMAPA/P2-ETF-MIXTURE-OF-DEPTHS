@@ -40,6 +40,26 @@ def get_macro_data(start_date=None, end_date=None):
         return None
     macro_df = df[macro_cols].copy()
     macro_df.index = pd.to_datetime(macro_df.index)
+    macro_df = macro_df.sort_index()
+
+    # IMPORTANT: FRED-style macro series (Treasury yields, VIX, DXY, etc.)
+    # do not publish on exactly the same calendar as ETF prices -- different
+    # holiday schedules, and some series update weekly rather than daily.
+    # Left unfilled, this produces scattered NaNs in macro_df on dates where
+    # the equity return index has valid data. A single NaN reaching the
+    # model poisons the entire training run (NaN loss -> NaN gradients ->
+    # NaN weights for the rest of that ticker's training), which is what was
+    # producing identical 0.0 scores for every ticker/window/universe.
+    # Forward-fill carries the last known macro reading forward (standard
+    # practice for lower-frequency macro series), and a trailing bfill
+    # handles any NaNs at the very start of the series.
+    n_missing_before = int(macro_df.isna().sum().sum())
+    macro_df = macro_df.ffill().bfill()
+    n_missing_after = int(macro_df.isna().sum().sum())
+    if n_missing_before > 0:
+        print(f"[data_manager] Filled {n_missing_before} missing macro values "
+              f"({n_missing_after} still missing after ffill/bfill).")
+
     if start_date:
         macro_df = macro_df[macro_df.index >= pd.to_datetime(start_date)]
     if end_date:
